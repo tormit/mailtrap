@@ -1,0 +1,20 @@
+{
+    "name": "bertramtruong/mailtrap",
+    "description": "A client for Laravel to access the API of MailTrap.io",
+    "authors": [
+        {
+            "name": "Bertram Truong",
+            "email": "b@bertramtruong.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Bertramtruong\\Mailtrap": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
