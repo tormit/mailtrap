@@ -1,0 +1,240 @@
+{
+  "name": "MailTrap.io API",
+  "baseUrl": "https://mailtrap.io",
+  "description": "Mailtrap is a fake SMTP server for development teams to test, view and share emails sent from the development and staging environments without spamming real customers.",
+  "operations": {
+    "getInboxes": {
+      "httpMethod": "GET",
+      "uri": "/api/v1/inboxes",
+      "summary": "Get a list of inboxes.",
+      "responseClass": "getInboxesOutput"
+    },
+    "getInbox": {
+      "httpMethod": "GET",
+      "uri": "/api/v1/inboxes/{id}",
+      "summary": "Get a inbox.",
+      "responseModel": "Inbox",
+      "parameters": {
+        "id": {
+          "location": "uri",
+          "description": "Inbox to retrieve by ID",
+          "required": true
+        }
+      }
+    },
+    "cleanInbox": {
+      "httpMethod": "PATCH",
+      "uri": "/api/v1/inboxes/{id}/clean",
+      "summary": "Clean all messages (emails) from inbox",
+      "parameters": {
+        "id": {
+          "location": "uri",
+          "description": "Inbox to retrieve by ID",
+          "required": true
+        }
+      }
+    },
+    "getMessages": {
+      "httpMethod": "GET",
+      "responseClass": "getMessagesOutput",
+      "uri": "/api/v1/inboxes/{inbox_id}/messages{?search,page,last_id}",
+      "parameters": {
+        "inbox_id": {
+          "location": "uri",
+          "required": true
+        },
+        "search": {
+          "location": "uri",
+          "required": false
+        },
+        "page": {
+          "location": "uri",
+          "required": false
+        },
+        "last_id": {
+          "location": "uri",
+          "required": false
+        }
+      }
+    },
+    "getMessage": {
+      "httpMethod": "GET",
+      "responseModel": "Message",
+      "uri": "/api/v1/inboxes/{inbox_id}/messages/{id}",
+      "parameters": {
+        "id": {
+          "location": "uri",
+          "required": true
+        },
+        "inbox_id": {
+          "location": "uri",
+          "required": true
+        }
+      }
+    }
+  },
+  "models": {
+    "getMessagesOutput": {
+      "type": "array",
+      "location": "json",
+      "items": {
+        "$ref": "Message"
+      }
+    },
+    "getInboxesOutput": {
+      "type": "array",
+      "location": "json",
+      "items": {
+        "$ref": "Inbox"
+      }
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "location": "json",
+          "type": "integer"
+        },
+        "inbox_id": {
+          "location": "json",
+          "type": "integer"
+        },
+        "subject": {
+          "location": "json",
+          "type": "string"
+        },
+        "sent_at": {
+          "location": "json",
+          "type": "string"
+        },
+        "from_email": {
+          "location": "json",
+          "type": "string"
+        },
+        "from_name": {
+          "location": "json",
+          "type": "string"
+        },
+        "to_email": {
+          "location": "json",
+          "type": "string"
+        },
+        "to_name": {
+          "location": "json",
+          "type": "string"
+        },
+        "html_body": {
+          "location": "json",
+          "type": "string"
+        },
+        "text_body": {
+          "location": "json",
+          "type": "string"
+        },
+        "email_size": {
+          "location": "json",
+          "type": "integer"
+        },
+        "is_read": {
+          "location": "json",
+          "type": "boolean"
+        },
+        "created_at": {
+          "location": "json",
+          "type": "string"
+        },
+        "updated_at": {
+          "location": "json",
+          "type": "string"
+        },
+        "sent_at_timestamp": {
+          "location": "json",
+          "type": "integer"
+        },
+        "human_size": {
+          "location": "json",
+          "type": "string"
+        },
+        "html_url": {
+          "location": "json",
+          "type": "string"
+        },
+        "txt_url": {
+          "location": "json",
+          "type": "string"
+        },
+        "raw_url": {
+          "location": "json",
+          "type": "string"
+        },
+        "download_url": {
+          "location": "json",
+          "type": "string"
+        },
+        "viruses_report_info": {
+          "location": "json",
+          "type": "boolean"
+        }
+      }
+    },
+    "Inbox": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "location": "json",
+          "type": "integer"
+        },
+        "company_id": {
+          "location": "json",
+          "type": "integer"
+        },
+        "name": {
+          "location": "json",
+          "type": "string"
+        },
+        "domain": {
+          "location": "json",
+          "type": "string"
+        },
+        "username": {
+          "location": "json",
+          "type": "string"
+        },
+        "password": {
+          "location": "json",
+          "type": "string"
+        },
+        "max_size": {
+          "location": "json",
+          "type": "integer"
+        },
+        "emails_count": {
+          "location": "json",
+          "type": "integer"
+        },
+        "emails_unread_count": {
+          "location": "json",
+          "type": "integer"
+        },
+        "last_message_sent_at_timestamp": {
+          "location": "json",
+          "type": "integer"
+        },
+        "smtp_ports": {
+          "type": "array",
+          "location": "json",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "pop3_ports": {
+          "type": "array",
+          "location": "json",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
