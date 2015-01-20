@@ -1,6 +1,7 @@
 {
     "name": "bertramtruong/mailtrap",
     "description": "A client for Laravel to access the API of MailTrap.io",
+    "license": "MIT",
     "authors": [
         {
             "name": "Bertram Truong",
